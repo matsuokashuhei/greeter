@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  truffle:
+    build:
+      context: .
+      dockerfile: 'truffle/.devcontainer/Dockerfile'
+    command: sleep infinity
+    volumes:
+      - './truffle/:/usr/src/app'
+
+  parity:
+    image: 'parity/parity:stable'
+    command: --chain=goerli
+    ports:
+      - 8546:8546
+
+  ganache:
+    image: trufflesuite/ganache:beta
+    ports:
+      - 8545:8545
