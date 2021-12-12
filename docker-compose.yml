@@ -7,16 +7,19 @@ services:
       context: .
       dockerfile: 'truffle/.devcontainer/Dockerfile'
     command: sleep infinity
+    depends_on:
+      # - parity
+      - ganache
     volumes:
       - './truffle/:/usr/src/app'
 
-  parity:
-    image: 'parity/parity:stable'
-    command: --chain=goerli
-    ports:
-      - 8546:8546
+  # parity:
+  #   image: 'parity/parity:stable'
+  #   command: --chain=goerli
+  #   ports:
+  #     - 8546:8546
 
   ganache:
-    image: trufflesuite/ganache:beta
+    image: trufflesuite/ganache-cli
     ports:
       - 8545:8545
